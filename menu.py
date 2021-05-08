@@ -68,6 +68,23 @@ class Menu:
             if running:
                 self.draw()
 
+    def text_long(self, surface, text, pos, font, color=pygame.Color('white')):
+        words = [word.split(' ') for word in text.splitlines()]
+        space = font.size(' ')[0]
+        max_width, max_height = surface.get_size()
+        x, y = pos
+        for line in words:
+            for word in line:
+                word_surface = font.render(word, 0, color)
+                word_width, word_height = word_surface.get_size()
+                if x + word_width >= max_width:
+                    x = pos[0]
+                    y += word_height
+                surface.blit(word_surface, (x, y))
+                x += word_width + space
+            x = pos[0]
+            y += word_height
+
     def draw(self):
         if self.mode == "menu":
             self.game.screen.blit(self.image, (0, 0))
@@ -86,11 +103,14 @@ class Menu:
                 self.image_guide, (900, 680))
             self.name_guide = self.game.font.render(
                 "GUIDE ", 1, (255, 255, 255))
-            self.small_guide = self.game.font_small.render(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vestibulum arcu vitae nisi interdum, pellentesque interdum nunc consectetur. Ut aliquet sit amet ligula vel vehicula. In lacinia nisi vel orci euismod placerat id ac erat. Praesent arcu augue, commodo eu arcu in, porta sagittis diam. Nam ac porta diam. Morbi eget sollicitudin purus. Quisque semper eget urna et venenatis. Duis sed ligula id magna laoreet vestibulum. Nulla ac velit justo. Vestibulum sit amet vestibulum quam, ac venenatis erat. Mauris euismod metus ac quam porta pretium. Duis id nunc fringilla quam blandit vestibulum. Ut at justo et justo tempus mollis. ", 1, (255, 255, 255))
+            self.msg1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vestibulum arcu vitae nisi interdum, pellentesque interdum nunc consectetur. Ut aliquet sit amet ligula vel vehicula. In lacinia nisi vel orci euismod placerat id ac erat."
+            self.msg2 = " Escape to return"
             self.game.screen.blit(self.image_guide, (0, 0))
-            self.game.screen.blit(self.name_guide, (40, 150))
-            self.game.screen.blit(self.small_guide, (600, 170))
+            self.game.screen.blit(self.name_guide, (340, 50))
+            self.text_long(self.game.screen, self.msg1,
+                           (40, 170), self.game.font_small)
+            self.text_long(self.game.screen, self.msg2,
+                           (40, 470), self.game.font)
         elif self.mode == "option":
             pass
         self.game.real_screen.blit(self.game.screen, (0, 0))
