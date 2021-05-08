@@ -98,7 +98,7 @@ class Menu:
                     self.menu_option[ind], (350, 346 + ind * 70))
         elif self.mode == "guide":
             self.image_guide = pygame.image.load(
-                'image/guide.png').convert_alpha()
+                'image/guide.jpg').convert_alpha()
             self.image_guide = pygame.transform.scale(
                 self.image_guide, (900, 680))
             self.name_guide = self.game.font.render(
@@ -112,6 +112,22 @@ class Menu:
             self.text_long(self.game.screen, self.msg2,
                            (40, 470), self.game.font)
         elif self.mode == "option":
-            pass
+            self.image_option = pygame.image.load(
+                'image/option.jpg').convert_alpha()
+            self.image_option = pygame.transform.scale(
+                self.image_option, (900, 680))
+            self.name_option = self.game.font.render(
+                "OPTION ", 1, (255, 255, 255))
+            self.msg3 = " Change your name: "
+            self.msg4 = " Change your color: "
+            self.msg5 = " Escape to return"
+            self.game.screen.blit(self.image_option, (0, 0))
+            self.game.screen.blit(self.name_option, (340, 50))
+            self.text_long(self.game.screen, self.msg3,
+                           (40, 170), self.game.font_small)
+            self.text_long(self.game.screen, self.msg4,
+                           (40, 270), self.game.font_small)
+            self.text_long(self.game.screen, self.msg5,
+                           (40, 370), self.game.font)
         self.game.real_screen.blit(self.game.screen, (0, 0))
         pygame.display.flip()
