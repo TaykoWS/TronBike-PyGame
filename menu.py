@@ -16,6 +16,8 @@ class Menu:
             "WELCOME TO TRON BIKE ", 1, (255, 255, 255))
         self.name_shadow = game.font.render(
             "WELCOME TO TRON BIKE ", 1, (0, 0, 0))
+        self.best_score = game.font.render(
+            "BEST SCORE : ", 1, (200, 200, 200))
         self.menu_option = [
             game.font.render("PLAY", 1, (255, 255, 255)),
             game.font.render("OPTION", 1, (255, 255, 255)),
@@ -94,8 +96,9 @@ class Menu:
     def draw(self):
         if self.mode == "menu":
             self.game.screen.blit(self.image, (0, 0))
-            self.game.screen.blit(self.name_shadow, (44, 154))
-            self.game.screen.blit(self.name, (40, 150))
+            self.game.screen.blit(self.name_shadow, (44, 54))
+            self.game.screen.blit(self.name, (40, 50))
+            self.game.screen.blit(self.best_score, (150, 130))
             self.game.screen.blit(self.surf_ind, (0, self.index * 70 + 350))
             for ind in range(4):
                 self.game.screen.blit(
