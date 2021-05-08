@@ -62,8 +62,14 @@ class Menu:
                             # self.game.run()
                         elif self.mode == "menu" and self.index == 1:
                             self.mode = "option"
+                            pygame.mixer.music.stop()
+                            pygame.mixer.music.load('sound/option.mp3')
+                            pygame.mixer.music.play()
                         elif self.mode == "menu" and self.index == 2:
                             self.mode = "guide"
+                            pygame.mixer.music.stop()
+                            pygame.mixer.music.load('sound/guide.mp3')
+                            pygame.mixer.music.play()
 
             if running:
                 self.draw()

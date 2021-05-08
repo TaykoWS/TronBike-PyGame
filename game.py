@@ -3,7 +3,7 @@ import sys
 import time
 import os
 from menu import Menu
-
+from pygame.locals import *
 
 SETTINGS = {
 
@@ -25,7 +25,10 @@ class Game:
         self.real_screen = pygame.display.set_mode(
             [self.width, self.height], flags, 32)
         pygame.display.set_caption("TronBike")
+        pygame.display.set_icon(pygame.image.load('image/icon.png'))
         self.font = pygame.font.Font("font/retro_font.ttf", 60)
         self.font_small = pygame.font.Font("font/retro_font.ttf", 30)
+        pygame.mixer.music.load('sound/menu.mp3')
+        pygame.mixer.music.play()
         self.menu = Menu(self)
         self.menu.run()
