@@ -55,6 +55,28 @@ def lightbike2_movement(keys_pressed, lb2):
     if keys_pressed[pygame.K_DOWN]:  # Down for lb1
         lb2.y += DIRECTION
 
+def lightbike1_collision(lb1):
+    # Test des limites du terrain pour prévoir collision
+    if lb1.x + DIRECTION < -6:
+        lb1.x = -6
+    if lb1.x + DIRECTION > WIDTH - 20:
+        lb1.x = WIDTH - 20
+    if lb1.y + DIRECTION < -6:
+        lb1.y = -6
+    if lb1.y + DIRECTION > HEIGHT - 25:
+        lb1.y = HEIGHT - 25
+
+def lightbike2_collision(lb2):
+    # Test des limites du terrain pour prévoir collision
+    if lb2.x + DIRECTION < 0:
+        lb2.x = 0
+    if lb2.x + DIRECTION > WIDTH - 15:
+        lb2.x = WIDTH - 15
+    if lb2.y + DIRECTION < -2:
+        lb2.y = -2
+    if lb2.y + DIRECTION > HEIGHT - 25:
+        lb2.y = HEIGHT - 25
+
 def run():
     lb1 = pygame.Rect(350, 300, LIGHTBIKE_WIDTH, LIGHTBIKE_HEIGHT)
     lb2 = pygame.Rect(400, 300, LIGHTBIKE_WIDTH, LIGHTBIKE_HEIGHT)
@@ -72,10 +94,9 @@ def run():
         lb1.y -= 1
         lb2.y += 1
 
-        if lb1.y + DIRECTION < -2:
-            lb1.y = 0
-        if lb2.y - DIRECTION < HEIGHT /2:
-            lb2.y = 0
+        # Test des collision
+        lightbike1_collision(lb1)
+        lightbike2_collision(lb2)
 
         keys_pressed = pygame.key.get_pressed()
         lightbike1_movement(keys_pressed, lb1)
