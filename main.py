@@ -4,7 +4,6 @@ import time
 import os
 
 from game import Game
-from menu import Menu
 
 if __name__ == "__main__":
 
