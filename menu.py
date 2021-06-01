@@ -113,13 +113,8 @@ class Menu:
         if self.mode == "menu":
             # to display something tin the screen
             self.game.screen.blit(self.image, (0, 0))
-<<<<<<< HEAD
             self.game.screen.blit(self.name_shadow, (44, 64))
             self.game.screen.blit(self.name, (40, 60))
-=======
-            self.game.screen.blit(self.name_shadow, (44, 154))
-            self.game.screen.blit(self.name, (40, 150))
->>>>>>> parent of bc14c09 (sound version 2)
             self.game.screen.blit(self.surf_ind, (0, self.index * 70 + 350))
             for ind in range(4):
                 self.game.screen.blit(
